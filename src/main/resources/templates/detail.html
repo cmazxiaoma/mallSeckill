@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>秒杀列表页</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!-- 引入 Bootstrap -->
+    <link href="/static/bootstrap.min.css" th:href="@{/bootstrap.min.css}" rel="stylesheet"/>
+
+    <!-- HTML5 Shim 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->
+    <!-- 注意： 如果通过 file://  引入 Respond.js 文件，则该文件无法起效果 -->
+    <!--[if lt IE 9]>
+    <script src="/static/html5shiv.js" th:src="@{/html5shiv.js}"></script>
+    <script src="/static/respond.min.js" th:src="@{/respond.min.js}"</script>
+    <![endif]-->
+</head>
+<body>
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading text-center">
+            <div class="pannel-heading"><h2 th:text="${seckill.name}">秒杀商品名称</h2></div>
+            <div class="panel-body">
+                <h2 class="text-danger">
+                    <span class="glyphicon glyphicon-time"></span>
+                    <span class="glyphicon" id="seckill-box"></span>
+                </h2>
+            </div>
+        </div>
+    </div>
+
+    <!--登录弹出层，输入电话-->
+    <div id="killPhoneModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title text-center">
+                        <span class="glyphicon glyphicon-phone"></span>
+                        秒杀电话：
+                    </h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-8 col-xs-offset-2">
+                            <input type="text" name="killPhone" id="killPhoneKey"
+                                   placeholder="填写手机号" class="form-control"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="modal-footer">
+                        <span id="killPhoneMessage" class="glyphicon"></span>
+                        <button type="button" id="killPhoneBtn" class="btn btn-success">
+                            <span class="glyphicon glyphicon-phone"></span>
+                            Submit
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="/static/jquery.min.js" th:src="@{/jquery.min.js}"></script>
+
+<script src="/static/jquery.cookie.min.js" th:src="@{/jquery.cookie.min.js}"></script>
+
+<script src="/static/jquery.countdown.js" th:src="@{/jquery.countdown.js}"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="/static/bootstrap.min.js" th:src="@{/bootstrap.min.js}"></script>
+
+<script src="/static/seckill.js" th:src="@{/seckill.js}"></script>
+<script th:inline="javascript">
+
+    $(function () {
+        seckill.detail.init({
+            seckillId: /*[[${seckill.seckillId}]]*/'',
+            startTime: /*[[${seckill.startTime.time}]]*/'',
+            endTime: /*[[${seckill.endTime.time}]]*/''
+        });
+    });
+
+</script>
+</html>

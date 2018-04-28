@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>秒杀列表页</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- 引入 Bootstrap -->
+    <link href="/static/bootstrap.min.css" th:href="@{/bootstrap.min.css}" rel="stylesheet"/>
+
+    <!-- HTML5 Shim 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->
+    <!-- 注意： 如果通过 file://  引入 Respond.js 文件，则该文件无法起效果 -->
+    <!--[if lt IE 9]>
+    <script src="/static/html5shiv.js" th:href="@{/html5shiv.js}"></script>
+    <script src="/static/respond.min.js" th:href="@{/respond.min.js}"</script>
+    <![endif]-->
+</head>
+<body>
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading text-center">
+            <h2>秒杀列表</h2>
+        </div>
+        <div class="panel-body">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>名称</th>
+                    <th>库存</th>
+                    <th>开始时间</th>
+                    <th>结束时间</th>
+                    <th>创建时间</th>
+                    <th>详情页</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="seckill : ${list}">
+                    <td th:text="${seckill.name}">商品名称</td>
+                    <td th:text="${seckill.number}">商品库存</td>
+                    <td th:text="${#dates.format(seckill.startTime,'yyyy-MM-dd HH:mm:ss')}">秒杀开始时间</td>
+                    <td th:text="${#dates.format(seckill.endTime,'yyyy-MM-dd HH:mm:ss')}">秒杀结束时间</td>
+                    <td th:text="${#dates.format(seckill.createTime,'yyyy-MM-dd HH:mm:ss')}">秒杀创建时间</td>
+                    <td>
+                        <a class="btn btn-info" href="detail.html"
+                           th:href="@{/seckill/{seckillId}/detail(seckillId=${seckill.seckillId})}"
+                           target="_blank">link</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="/static/jquery.min.js" th:src="@{/jquery.min.js}"></script>
+<script src="/static/bootstrap.min.js" th:src="@{/bootstrap.min.js}"></script>
+</html>
