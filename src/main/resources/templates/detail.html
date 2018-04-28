@@ -5,13 +5,13 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <!-- 引入 Bootstrap -->
-    <link href="/static/bootstrap.min.css" th:href="@{/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/static/bootstrap.min.css}" rel="stylesheet"/>
 
     <!-- HTML5 Shim 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->
     <!-- 注意： 如果通过 file://  引入 Respond.js 文件，则该文件无法起效果 -->
     <!--[if lt IE 9]>
-    <script src="/static/html5shiv.js" th:src="@{/html5shiv.js}"></script>
-    <script src="/static/respond.min.js" th:src="@{/respond.min.js}"</script>
+    <script th:src="@{/static/html5shiv.js}"></script>
+    <script th:src="@{/static/respond.min.js}"</script>
     <![endif]-->
 </head>
 <body>
@@ -63,15 +63,16 @@
 
 
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-<script src="/static/jquery.min.js" th:src="@{/jquery.min.js}"></script>
+<script th:src="@{/static/jquery.min.js}"></script>
 
-<script src="/static/jquery.cookie.min.js" th:src="@{/jquery.cookie.min.js}"></script>
+<script th:src="@{/static/jquery.cookie.min.js}"></script>
 
-<script src="/static/jquery.countdown.js" th:src="@{/jquery.countdown.js}"></script>
+<script th:src="@{/static/jquery.countdown.js}"></script>
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-<script src="/static/bootstrap.min.js" th:src="@{/bootstrap.min.js}"></script>
+<script th:src="@{/static/bootstrap.min.js}"></script>
 
-<script src="/static/seckill.js" th:src="@{/seckill.js}"></script>
+<script th:src="@{/static/seckill.js}"></script>
+
 <script th:inline="javascript">
 
     $(function () {
