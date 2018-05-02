@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cmazxiaoma.mallSeckill.dao.SuccessKilledMapper">
+
+  <resultMap id="BaseResultMap" type="com.cmazxiaoma.mallSeckill.model.SuccessKilled" autoMapping="true">
+  </resultMap>
+
+  <resultMap id="BaseResultMap1" type="com.cmazxiaoma.mallSeckill.model.SuccessKilled" autoMapping="true">
+      <association property="seckill" javaType="com.cmazxiaoma.mallSeckill.model.Seckill" autoMapping="true">
+      </association>
+  </resultMap>
+
+  <select id="queryByIdWithSeckill" resultMap="BaseResultMap1">
+    select
+    a.*,
+    b.*
+    from success_killed a
+    join seckill b on (a.seckill_id = b.seckill_id)
+    where a.seckill_id=#{seckillId} and a.user_phone=#{userPhone}
+  </select>
+
+</mapper>
