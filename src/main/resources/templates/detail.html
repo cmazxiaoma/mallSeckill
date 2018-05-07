@@ -4,14 +4,26 @@
     <title>秒杀列表页</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script th:src="@{/js/jquery.min.js}"></script>
+
     <!-- 引入 Bootstrap -->
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
 
-    <!-- HTML5 Shim 和 Respond.d 用于让 IE8 支持 HTML5元素和媒体查询 -->
-    <!-- 注意： 如果通过 file://  引入 Respond.d 文件，则该文件无法起效果 -->
+    <script th:src="@{/js/jquery.cookie.min.js}"></script>
+
+    <script th:src="@{/js/jquery.countdown.js}"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+
+    <script th:src="@{/js/seckill.js}"></script>
+
+    <!-- HTML5 Shim 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->
+    <!-- 注意： 如果通过 file://引入 Respond.js文件，则该文件无法起效果 -->
     <!--[if lt IE 9]>
-    <script th:src="@{/js/html5shiv.d}"></script>
-    <script th:src="@{/js/respond.min.d}"</script>
+    <script th:src="@{/js/html5shiv.js}"></script>
+    <script th:src="@{/js/respond.min.js}"</script>
     <![endif]-->
 </head>
 <body>
@@ -60,19 +72,6 @@
     </div>
 </div>
 </body>
-
-
-<!-- jQuery文件。务必在bootstrap.min.d 之前引入 -->
-<script th:src="@{/js/jquery.min.js}"></script>
-
-<script th:src="@{/js/jquery.cookie.min.js}"></script>
-
-<script th:src="@{/js/jquery.countdown.js}"></script>
-<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-<script th:src="@{/js/bootstrap.min.js}"></script>
-
-<script th:src="@{/js/seckill.js}"></script>
-
 <script th:inline="javascript">
     $(function () {
         seckill.detail.init({

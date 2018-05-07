@@ -24,7 +24,7 @@ public class SuccessKilled {
     /**
      * 状态标识：-1 无效 0 成功 1 已付款
      */
-    private Byte state;
+    private Integer state;
 
     /**
      * 创建时间
@@ -38,6 +38,14 @@ public class SuccessKilled {
     public SuccessKilled(Long seckillId, Long userPhone) {
         this.seckillId = seckillId;
         this.userPhone = userPhone;
+    }
+
+    public SuccessKilled(Long seckillId, Long userPhone, Integer state, Date createTime, Seckill seckill) {
+        this.seckillId = seckillId;
+        this.userPhone = userPhone;
+        this.state = state;
+        this.createTime = createTime;
+        this.seckill = seckill;
     }
 
     /**
@@ -81,7 +89,7 @@ public class SuccessKilled {
      *
      * @return state - 状态标识：-1 无效 0 成功 1 已付款
      */
-    public Byte getState() {
+    public Integer getState() {
         return state;
     }
 
@@ -90,7 +98,7 @@ public class SuccessKilled {
      *
      * @param state 状态标识：-1 无效 0 成功 1 已付款
      */
-    public void setState(Byte state) {
+    public void setState(Integer state) {
         this.state = state;
     }
 
