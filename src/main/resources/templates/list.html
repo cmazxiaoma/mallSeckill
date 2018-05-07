@@ -5,13 +5,13 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- 引入 Bootstrap -->
-    <link th:href="@{/static/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
 
-    <!-- HTML5 Shim 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->
-    <!-- 注意： 如果通过 file://  引入 Respond.js 文件，则该文件无法起效果 -->
+    <!-- HTML5 Shim 和 Respond.d 用于让 IE8 支持 HTML5元素和媒体查询 -->
+    <!-- 注意： 如果通过 file://  引入 Respond.d 文件，则该文件无法起效果 -->
     <!--[if lt IE 9]>
-    <script th:href="@{/static/html5shiv.js}"></script>
-    <script th:href="@{/static/respond.min.js}"</script>
+    <script th:src="/d/html5shiv.d"></script>
+    <script th:src="/d/respond.min.d"></script>
     <![endif]-->
 </head>
 <body>
@@ -41,7 +41,7 @@
                     <td th:text="${#dates.format(seckill.createTime,'yyyy-MM-dd HH:mm:ss')}">秒杀创建时间</td>
                     <td>
                         <a class="btn btn-info" href="detail.html"
-                           th:href="@{/seckill/{seckillId}/detail(seckillId=${seckill.seckillId})}"
+                           th:href="@{/seckill/detail/{seckillId}(seckillId=${seckill.seckillId})}"
                            target="_blank">link</a>
                     </td>
                 </tr>
@@ -52,7 +52,7 @@
 </div>
 </body>
 
-<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-<script th:src="@{/static/jquery.min.js}"></script>
-<script th:src="@{/static/bootstrap.min.js}"></script>
+<!-- jQuery文件。务必在bootstrap.min.d 之前引入 -->
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
 </html>

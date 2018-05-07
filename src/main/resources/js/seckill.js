@@ -59,12 +59,15 @@ var seckill = {
     //计时
     countDown: function (seckillId, nowTime, startTime, endTime) {
         var seckillBox = $("#seckill-box");
+        console.log("seckillId=" + seckillId + ",nowTime=" + nowTime + ",startTime=" + startTime
+            + ",endTime=" + endTime);
         //时间判断
         if (nowTime > endTime) {
             seckillBox.html("秒杀结束");
         } else if (nowTime < startTime) {
             //秒杀未开始
             var killTime = new Date(startTime + 1000);
+            console.log(killTime);
             seckillBox.countdown(killTime, function (event) {
                 //控制时间格式
                 var format = event.strftime("秒杀倒计时: %D天 %H时 %M分 %S秒");
@@ -81,6 +84,7 @@ var seckill = {
     detail: {
         init: function (params) {
             var killPhone = $.cookie("killPhone");
+            console.log(killPhone);
 
             if (!killPhone) {
                 var killPhoneModal = $("#killPhoneModal");
@@ -94,7 +98,7 @@ var seckill = {
                     var inputPhone = $("#killPhoneKey").val();
                     //验证输入的手机号是否正确
                     if (seckill.validatePhone(inputPhone)) {
-                        $.cookie("killPhone", inputPhone, {expires: 7, path:"/seckill"});
+                        $.cookie("killPhone", inputPhone, {expires: 7, path: "/seckill"});
                         window.location.reload();
                     } else {
                         $("#killPhoneMessage").hide().html('<label class="label label-danger">手机号错误!</label>').show(300);
@@ -104,9 +108,10 @@ var seckill = {
             var startTime = params['startTime'];
             var endTime = params['endTime'];
             var seckillId = params['seckillId'];
-            $.get(seckill.URL.now(), {}, function(result) {
+            $.get(seckill.URL.now(), {}, function (result) {
                 if (result && result.code && result.code === 200) {
                     var nowTime = result['data'];
+                    console.log(nowTime);
                     seckill.countDown(seckillId, nowTime, startTime, endTime);
                 } else {
                     console.log("result:" + result);

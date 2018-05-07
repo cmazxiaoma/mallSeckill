@@ -128,13 +128,13 @@ public class SeckillServiceImpl extends AbstractService<Seckill> implements ISec
 
         try {
             seckillMapper.killByProcedure(map);
-            int resullt = MapUtils.getInteger(map, "-2");
+            int result = MapUtils.getInteger(map, "result", -2);
 
-            if (resullt == 1) {
+            if (result == 1) {
                 SuccessKilled successKilled = successKilledMapper.queryByIdWithSeckill(seckillId, userPhone);
                 return new SeckillExecutionVo(seckillId, successKilled, SeckillStateEnum.SUCCESS);
             } else {
-                return new SeckillExecutionVo(seckillId, SeckillStateEnum.stateOf(resullt));
+                return new SeckillExecutionVo(seckillId, SeckillStateEnum.stateOf(result));
             }
         } catch (Exception e) {
             log.error(e.getMessage());

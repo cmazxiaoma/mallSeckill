@@ -23,6 +23,7 @@ public interface ISeckillService extends IService<Seckill> {
 
     /**
      * 进行秒杀
+     *
      * @param seckillId
      * @param userPhone
      * @param md5
