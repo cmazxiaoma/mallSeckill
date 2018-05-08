@@ -1,5 +1,6 @@
 package com.cmazxiaoma.mallSeckill.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.Date;
@@ -34,19 +35,6 @@ public class SuccessKilled {
 
     @Transient
     private Seckill seckill;
-
-    public SuccessKilled(Long seckillId, Long userPhone) {
-        this.seckillId = seckillId;
-        this.userPhone = userPhone;
-    }
-
-    public SuccessKilled(Long seckillId, Long userPhone, Integer state, Date createTime, Seckill seckill) {
-        this.seckillId = seckillId;
-        this.userPhone = userPhone;
-        this.state = state;
-        this.createTime = createTime;
-        this.seckill = seckill;
-    }
 
     /**
      * 获取秒杀商品id

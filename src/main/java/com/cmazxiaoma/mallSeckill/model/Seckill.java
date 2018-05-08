@@ -1,5 +1,6 @@
 package com.cmazxiaoma.mallSeckill.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.Date;

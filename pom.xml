@@ -6,7 +6,7 @@
 	<groupId>com.cmazxiaoma</groupId>
 	<artifactId>seckill</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>seckill</name>
 	<description>Demo project for Spring Boot</description>
@@ -220,6 +220,14 @@
 			<groupId>commons-collections</groupId>
 			<artifactId>commons-collections</artifactId>
 			<version>${commons.version}</version>
+		</dependency>
+
+		<!--spring boot tomcat
+		默认可以不用配置，但当需要把当前web应用布置到外部servlet容器时就需要配置，并将scope配置为provided-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
 		</dependency>
 
 	</dependencies>

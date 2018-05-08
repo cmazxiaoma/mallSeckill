@@ -5,15 +5,18 @@
   <resultMap id="BaseResultMap" type="com.cmazxiaoma.mallSeckill.model.SuccessKilled" autoMapping="true">
   </resultMap>
 
-  <resultMap id="BaseResultMap1" type="com.cmazxiaoma.mallSeckill.model.SuccessKilled" autoMapping="true">
-      <association property="seckill" javaType="com.cmazxiaoma.mallSeckill.model.Seckill" autoMapping="true">
-      </association>
-  </resultMap>
-
-  <select id="queryByIdWithSeckill" resultMap="BaseResultMap1">
+  <select id="queryByIdWithSeckill" resultType="com.cmazxiaoma.mallSeckill.model.SuccessKilled">
     select
-    a.*,
-    b.*
+    a.seckill_id,
+    a.user_phone,
+    a.create_time,
+    a.state,
+    b.seckill_id "seckill.seckill_id",
+    b.name "seckill.name",
+    b.number "seckill.number",
+    b.start_time "seckill.start_time",
+    b.end_time "seckill.end_time",
+    b.create_time "seckill.create_time"
     from success_killed a
     join seckill b on (a.seckill_id = b.seckill_id)
     where a.seckill_id=#{seckillId} and a.user_phone=#{userPhone}

@@ -25,6 +25,7 @@ import tk.mybatis.mapper.entity.Condition;
 import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Map;
 import java.util.Objects;
@@ -87,7 +88,11 @@ public class SeckillServiceImpl extends AbstractService<Seckill> implements ISec
         Date nowTime = new Date();
 
         try {
-            int insertCount = successKilledMapper.insert(new SuccessKilled(seckillId, userPhone));
+            SuccessKilled paramSuccessKilled = new SuccessKilled();
+            paramSuccessKilled.setSeckillId(seckillId);
+            paramSuccessKilled.setUserPhone(userPhone);
+            paramSuccessKilled.setCreateTime(nowTime);
+            int insertCount = successKilledMapper.insert(paramSuccessKilled);
 
             if (insertCount <= 0) {
                 throw new RepeatKillException("seckill repeated");
