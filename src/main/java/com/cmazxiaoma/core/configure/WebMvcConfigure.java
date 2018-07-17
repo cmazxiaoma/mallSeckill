@@ -2,6 +2,7 @@ package com.cmazxiaoma.core.configure;
 
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
@@ -16,6 +17,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.HandlerExceptionResolver;
@@ -87,16 +91,22 @@ public class WebMvcConfigure extends WebMvcConfigurerAdapter {
                 if (e instanceof ServiceException) {
                     resultVo = resultVoBuilder.code(ResultCode.FAIL.getCode()).msg(e.getMessage()).build();
                     log.info(e.getMessage());
+                } else if (e instanceof HttpRequestMethodNotSupportedException) {
+                    resultVo = ResultVoGenerator.genCustomResult(ResultCode.REQUEST_METHOD_ERROR);
+                } else if (e instanceof HttpMessageNotReadableException | e instanceof JSONException) {
+                    resultVo = ResultVoGenerator.genFailResult("JSON parse error, json格式错误!");
+                } else if (e instanceof MethodArgumentTypeMismatchException) {
+                    resultVo = ResultVoGenerator.genCustomResult(ResultCode.ARGUMENT_TYPE_MISMATCH_ERROR);
+                } else if (e instanceof MissingServletRequestParameterException) {
+                    resultVo = ResultVoGenerator.genCustomResult(ResultCode.REQUIRED_PARAM_EMPTY);
+                } else if (e instanceof MethodArgumentNotValidException) {
+                    resultVo = ResultVoGenerator.genCustomResult(ResultCode.PARAM_FORMAT_ERROR);
                 } else if (e instanceof NoHandlerFoundException) {
                     resultVo = resultVoBuilder.code(ResultCode.NOT_FOUND.getCode()).msg("接口 [" + request.getRequestURI() + "] 不存在").data("null").build();
                 } else if (e instanceof ServletException) {
                     resultVo = resultVoBuilder.code(ResultCode.FAIL.getCode()).msg(e.getMessage()).data("null").build();
                 } else if (e instanceof AccessDeniedException) {
                     resultVo = resultVoBuilder.code(ResultCode.FORBIDDEN.getCode()).msg(e.getMessage()).data("null").build();
-                } else if (e instanceof HttpMessageNotReadableException) {
-                    resultVo = ResultVoGenerator.genFailResult("JSON parse error, json格式错误!");
-                } else if (e instanceof MethodArgumentTypeMismatchException) {
-                    resultVo = ResultVoGenerator.genCustomResult(ResultCode.ILLEGAL_PARAMETERS);
                 } else {
                     resultVo = resultVoBuilder.code(ResultCode.INTERNAL_SERVER_ERROR.getCode()).msg("接口 [" + request.getRequestURI() + "] 内部错误，请联系管理员").data("null").build();
                     String message;

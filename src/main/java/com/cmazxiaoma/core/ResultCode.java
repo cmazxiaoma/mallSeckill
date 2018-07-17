@@ -47,7 +47,15 @@ public enum ResultCode {
     //Session失效
     INVALID_SESSION(9, "session已失效"),
 
-    ACCOUNT_LOGIN_ELSEWHERE(10, "账号已在其他地方登录，被挤下线！");
+    ACCOUNT_LOGIN_ELSEWHERE(10, "账号已在其他地方登录，被挤下线！"),
+
+    REQUEST_METHOD_ERROR(11, "请求方式错误"),
+
+    ARGUMENT_TYPE_MISMATCH_ERROR(12, "参数类型不匹配！"),
+
+    REQUIRED_PARAM_EMPTY(13, "必选参数为空！"),
+
+    PARAM_FORMAT_ERROR(14, "参数格式错误！");
 
 
     private Integer code;
